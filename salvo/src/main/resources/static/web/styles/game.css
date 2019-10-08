@@ -44,3 +44,8 @@
 .salvoPiece{
     background-color: blue;
 }
+
+btn{
+  width: 15%;
+  height: 15%;
+}

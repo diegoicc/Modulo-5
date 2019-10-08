@@ -1,15 +1,15 @@
 package com.codeoftheweb.salvo;
 
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
-import java.util.LinkedHashMap;
-import java.util.Map;
-import java.util.Set;
 
 @RestController
 @RequestMapping("/api")
@@ -24,12 +24,43 @@ public class SalvoController {
     @Autowired
     private PlayerRepository playerRepository;
 
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
+
     @RequestMapping("/games")
-    public List<Map<String, Object>> getGames() {
-        return gameRepository.findAll()
+
+    Map<String, Object> getGames(Authentication authentication) {
+        Map<String, Object> dto = new HashMap<>();
+        if (isGuest(authentication)){
+            dto.put("player", "Guest");
+        }else{
+            Player player = playerRepository.findByUserName(authentication.getName());
+            dto.put("player", player.makePlayerDTO());
+        }
+        dto.put("games", gameRepository.findAll()
                 .stream()
                 .map(Game -> makeGameDTO(Game))
-                .collect(Collectors.toList());
+                .collect(Collectors.toList()));
+        return dto;
+    }
+
+    private boolean isGuest(Authentication authentication) {
+        return authentication == null || authentication instanceof AnonymousAuthenticationToken;
+    }
+
+    @RequestMapping(path = "/players", method = RequestMethod.POST)
+    public ResponseEntity<Object> register(
+            @RequestParam String email, @RequestParam String password) {
+
+        if (email.isEmpty() || password.isEmpty()) {
+            return new ResponseEntity<>("Missing data", HttpStatus.FORBIDDEN);
+        }
+        if (playerRepository.findByUserName(email) !=  null) {
+            return new ResponseEntity<>("Name already in use", HttpStatus.FORBIDDEN);
+        }
+        playerRepository.save(new Player(email, passwordEncoder.encode(password)));
+        return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
     @RequestMapping("/game_view/{nn}")

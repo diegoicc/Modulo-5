@@ -1,15 +1,93 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Salvo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 </head>
-<body>
-<H1>Salvo!</H1>
-<OL id="gamesInfo"></OL>
 
-<script src="scripts/jquery-3.3.1.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script src="scripts/games.js"></script>
+<body>
+
+    <div id="container">
+        <H1 class="text-center">Salvo!</H1>
+
+
+        <form action="" class="form-inline">
+            <div id="login-form">
+                <div class="form-row align-items-center">
+                    <div class="col-auto">
+                        <label class="sr-only" for="inlineFormInput">userName</label>
+                        <input type="text" class="form-control mb-2" id="username" placeholder="Username">
+                    </div>
+                    <div class="col-auto">
+                        <label class="sr-only" for="password">password</label>
+                        <div class="input-group mb-2" id="grupoPass">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text"></i></div>
+                            </div>
+                            <input type="password" class="form-control" id="password" name="password"
+                                placeholder="Password">
+                        </div>
+                    </div>
+                    <div class="col-auto">
+
+                    </div>
+                    <div class="col-auto">
+                        <button type="submit" class="btn btn-primary" id="login">Login</button>
+                        <button type="submit" class="btn btn-success" id="singUp">Sing Up</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+
+
+
+
+        <form id="logout-form" class="form-group">
+            <div class="col d-flex justify-content-end">
+                <h4 id="userLog"></h4>
+                <button type="submit" class="btn btn-dark" id="logout">Log out</button>
+            </div>
+        </form>
+
+        </br>
+        </br>
+
+        <H3 class="text-center tituloTabla">GAMES</H3>
+        <table class="table table-hover text-center">
+            <thead class="thead-dark">
+                <th>Game</th>
+                <th>Fecha</th>
+                <th>Player 1</th>
+                <th>Player 2</th>
+            </thead>
+            <tbody id="gamesInfo">
+                <tr></tr>
+                <tr></tr>
+            </tbody>
+        </table>
+
+        </br>
+        </br>
+
+
+        <H3 class="text-center">LEADER BOARD</H3>
+        <table id="leaderBoard" class="table table-hover text-center"></table>
+    </div>
+
+
+
+    <script src="scripts/jquery-3.3.1.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="scripts/games.js"></script>
+    <script src="scripts/leaderboard.js"></script>
+    <script src="scripts/logs.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="https://kit.fontawesome.com/8073855d65.js" crossorigin="anonymous"></script>
 </body>
+
 </html>
