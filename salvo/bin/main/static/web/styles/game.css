@@ -1,0 +1,51 @@
+
+.gridContainer {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  text-align: center;
+}
+
+.gridCell {
+  border: 1px solid green;
+  width: 1.7em;
+  height: 1.7em;
+  border-radius: 0.15em;
+  margin: 0.15em;
+}
+
+.gridHeader {
+  border-color: black;
+  text-align: center;
+  line-height: 1.7em;
+}
+
+.gridSalvoes {
+  display: flex;
+  border-radius: 0.15em;
+
+}
+
+.gridShips {
+  display: flex;
+  border-radius: 0.15em;
+
+}
+
+.ship-piece{
+    background-color: mediumpurple;
+}
+​
+.ship-piece-hited{
+    background-color: darkmagenta;
+}
+
+.salvoPiece{
+    background-color: blue;
+}
+
+btn{
+  width: 15%;
+  height: 15%;
+}
