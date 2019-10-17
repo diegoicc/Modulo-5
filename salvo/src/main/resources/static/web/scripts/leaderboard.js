@@ -7,7 +7,9 @@ function leaderBoard() {
                 let tablaFormateada = addTableHTML(data);
                 let tablaScore = document.getElementById("leaderBoard");
                 tablaScore.innerHTML = tablaFormateada;
+
             }
+
 
             function addTableHTML(data) {
                 var tabla = "<thead><tr><th>Full Name</th><th>Total</th><th>Won</th><th>Lost</th><th>Tied</th></tr></thead>";
@@ -28,6 +30,7 @@ function leaderBoard() {
                 return tabla;
             }
             scoreTable(data);
+
 
         });
 }

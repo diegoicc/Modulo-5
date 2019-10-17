@@ -7,10 +7,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 </head>
+<style>
+    body,
+    html {
+        height: 100%
+    }
 
-<body>
+    .bgimg {
+        background-image: url(https://wallpapermemory.com/uploads/523/battleship-background-hd-1920x1080-438977.jpg);
+        min-height: 100%;
+        background-position: center;
+        background-size: cover;
+    }
+</style>
 
-    <div id="container">
+<body class="bgimg text-white">
+
+    <div id="text-white container">
         <H1 class="text-center">Salvo!</H1>
 
 
@@ -35,16 +48,12 @@
 
                     </div>
                     <div class="col-auto">
-                        <button type="submit" class="btn btn-primary" id="login">Login</button>
-                        <button type="submit" class="btn btn-success" id="singUp">Sing Up</button>
+                        <button type="submit" class="btn btn-dark" id="login">Login</button>
+                        <button type="submit" class="btn btn-dark" id="singUp">Sing Up</button>
                     </div>
                 </div>
             </div>
         </form>
-
-
-
-
 
         <form id="logout-form" class="form-group">
             <div class="col d-flex justify-content-end">
@@ -57,7 +66,7 @@
         </br>
 
         <H3 class="text-center tituloTabla">GAMES</H3>
-        <table class="table table-hover text-center">
+        <table class="table table-hover text-center text-white">
             <thead class="thead-dark">
                 <th>Game</th>
                 <th>Fecha</th>
@@ -75,7 +84,7 @@
 
 
         <H3 class="text-center">LEADER BOARD</H3>
-        <table id="leaderBoard" class="table table-hover text-center"></table>
+        <table id="leaderBoard" class="table table-hover text-center text-white"></table>
     </div>
 
 
