@@ -1,10 +1,10 @@
 /**
- * gridstack.js 0.3.0
+ * gridstack.js 1.0.0-dev
  * http://troolee.github.io/gridstack.js/
- * (c) 2014-2016 Pavel Reznikov, Dylan Weiss
+ * (c) 2014-2017 Pavel Reznikov, Dylan Weiss
  * gridstack.js may be freely distributed under the MIT license.
  * @preserve
- */
+*/
 (function(factory) {
     if (typeof define === 'function' && define.amd) {
         define(['jquery', 'lodash', 'gridstack', 'jquery-ui/data', 'jquery-ui/disable-selection', 'jquery-ui/focusable',
@@ -12,8 +12,7 @@
             'jquery-ui/plugin', 'jquery-ui/safe-active-element', 'jquery-ui/safe-blur', 'jquery-ui/scroll-parent',
             'jquery-ui/tabbable', 'jquery-ui/unique-id', 'jquery-ui/version', 'jquery-ui/widget',
             'jquery-ui/widgets/mouse', 'jquery-ui/widgets/draggable', 'jquery-ui/widgets/droppable',
-            'jquery-ui/widgets/resizable'
-        ], factory);
+            'jquery-ui/widgets/resizable'], factory);
     } else if (typeof exports !== 'undefined') {
         try { jQuery = require('jquery'); } catch (e) {}
         try { _ = require('lodash'); } catch (e) {}
@@ -27,9 +26,9 @@
     var scope = window;
 
     /**
-     * @class JQueryUIGridStackDragDropPlugin
-     * jQuery UI implementation of drag'n'drop gridstack plugin.
-     */
+    * @class JQueryUIGridStackDragDropPlugin
+    * jQuery UI implementation of drag'n'drop gridstack plugin.
+    */
     function JQueryUIGridStackDragDropPlugin(grid) {
         GridStackUI.GridStackDragDropPlugin.call(this, grid);
     }
@@ -48,7 +47,11 @@
             var value = arguments[3];
             el.resizable(opts, key, value);
         } else {
+            var handles = el.data('gs-resize-handles') ? el.data('gs-resize-handles') :
+                this.grid.opts.resizable.handles;
             el.resizable(_.extend({}, this.grid.opts.resizable, {
+                handles: handles
+            }, {
                 start: opts.start || function() {},
                 stop: opts.stop || function() {},
                 resize: opts.resize || function() {}
@@ -74,13 +77,7 @@
 
     JQueryUIGridStackDragDropPlugin.prototype.droppable = function(el, opts) {
         el = $(el);
-        if (opts === 'disable' || opts === 'enable') {
-            el.droppable(opts);
-        } else {
-            el.droppable({
-                accept: opts.accept
-            });
-        }
+        el.droppable(opts);
         return this;
     };
 
