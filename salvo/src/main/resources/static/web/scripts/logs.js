@@ -15,6 +15,7 @@ fetch('/api/games')
         console.log(data)
     })
 
+    
 
 $("#login").click(function (evt) {
     login(evt);
