@@ -25,7 +25,7 @@ public class ShipController {
   @Autowired
   private ShipRepository shipRepository;
 
-  @RequestMapping("/games/players/{gpid}/ships")
+  @RequestMapping(value = "/games/players/{gpid}/ships", method = RequestMethod.POST)
   public ResponseEntity<Map> addShip(@PathVariable long gpid, @RequestBody Set<Ship> ships, Authentication authentication) {
 
     if(isGuest(authentication)){

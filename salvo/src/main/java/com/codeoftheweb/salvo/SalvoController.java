@@ -215,15 +215,23 @@ public class SalvoController {
             return new ResponseEntity<>(makeMap("error", "NO esta autorizado ya tengo ships"), HttpStatus.UNAUTHORIZED);
         }
 
-        if(!turnHasSalvoes (salvo,gamePlayer.getSalvoEs())){
-            salvo.setTurno(gamePlayer.getSalvoEs().size() +1);
+        //verifica si se disparo en el turno, sino lo agrega, y sino no deja disparar.
+
+
+        if (!turnHasSalvoes(salvo, gamePlayer.getSalvoEs())) {
+            salvo.setTurno(gamePlayer.getSalvoEs().size() + 1);
             salvo.setGamePlayer(gamePlayer);
             salvoRepository.save(salvo);
-            return new ResponseEntity<>(makeMap("ok", "Salvos agregados"),HttpStatus.CREATED);
+            return new ResponseEntity<>(makeMap("ok", "Salvos agregados"), HttpStatus.CREATED);
         }
-        return new ResponseEntity<>(makeMap("error", "No puedes disparar en este turno"), HttpStatus.FORBIDDEN);
+            return new ResponseEntity<>(makeMap("error", "No puedes disparar en este turno"), HttpStatus.FORBIDDEN);
+
     }
-        public boolean turnHasSalvoes (Salvo newSalvo, Set<Salvo> playerSalvoes) {
+
+    // Comparo el turno que trato de crear con todos los anteriores.
+
+
+    public boolean turnHasSalvoes (Salvo newSalvo, Set<Salvo> playerSalvoes) {
         boolean hasSalvoes = false;
         for (Salvo salvo: playerSalvoes) {
             if(salvo.getTurno() == newSalvo.getTurno()) {
